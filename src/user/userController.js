@@ -5,6 +5,22 @@ const User = mongoose.model('user');
 const auth = require('../auth/authController');
 
 module.exports = {
+	async indexByUser(req, res) {
+		let { id, token } = req.headers;
+
+		const authorized = await auth.checkAccess(id, token);
+		if (authorized) {
+			User.find({ _id: id })
+				.then((data) => {
+					res.send(data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		} else {
+			res.status(401).send('Não autorizado');
+		}
+	},
 	async indexAll(req, res) {
 		let { id, token } = req.headers;
 

@@ -9,6 +9,7 @@ router.get('/checkAccess', authController.publicCheckAccess);
 
 const userController = require('./user/userController');
 
+router.get('/user', userController.indexByUser);
 router.get('/users', userController.indexAll);
 router.post('/createUser', userController.add);
 router.put('/updateUser/:id', userController.update);
