@@ -10,7 +10,7 @@ module.exports = {
 
 		const authorized = await auth.checkAccess(id, token);
 		if (authorized) {
-			User.find({ _id: id })
+			User.findOne({ _id: id })
 				.then((data) => {
 					res.send(data);
 				})
