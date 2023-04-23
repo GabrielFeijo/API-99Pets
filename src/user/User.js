@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema({
 	codigoRecuperacao: String,
 	dataCodigo: Date,
 	token: String,
+	roles: [],
 });
 
 mongoose.model('user', UserSchema);

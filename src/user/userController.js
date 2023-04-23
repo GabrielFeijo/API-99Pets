@@ -47,6 +47,7 @@ module.exports = {
 				nome: req.body.nome,
 				email: req.body.email,
 				senha: senhaHash,
+				roles: req.body.roles,
 			});
 			user
 				.save()
@@ -72,6 +73,7 @@ module.exports = {
 				nome: req.body.nome,
 				email: req.body.email,
 				senha: senhaHash,
+				roles: req.body.roles,
 			})
 				.then((data) => {
 					console.log(data);
