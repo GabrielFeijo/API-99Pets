@@ -19,7 +19,12 @@ module.exports = {
 
 				user = await user.save();
 
-				result = { id: user._id, token: user.token };
+				result = {
+					id: user._id,
+					token: user.token,
+					roles: user.roles,
+					nome: user.nome,
+				};
 
 				messages.push('Usuário autorizado.');
 				statusCode = 200;
