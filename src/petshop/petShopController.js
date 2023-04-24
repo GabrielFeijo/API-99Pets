@@ -1,4 +1,4 @@
-require('./Driver');
+require('./PetShop');
 const mongoose = require('mongoose');
 const PetShop = mongoose.model('petshop');
 const auth = require('../auth/authController');
