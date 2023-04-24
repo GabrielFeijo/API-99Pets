@@ -1,6 +1,7 @@
 require('./Driver');
 const mongoose = require('mongoose');
 const Driver = mongoose.model('driver');
+const user = require('../user/userController');
 const auth = require('../auth/authController');
 
 module.exports = {
@@ -22,29 +23,31 @@ module.exports = {
 		}
 	},
 	async add(req, res) {
-		let { id, token } = req.headers;
+		const { nome, CPF, email, senha, roles } = req.body;
 
-		const authorized = await auth.checkAccess(id, token);
+		const newUser = { nome: nome, email: email, senha: senha, roles: roles };
 
-		if (authorized) {
+		try {
+			const userData = await user.newUser(newUser);
+			const data = userData.result;
 			const driver = new Driver({
-				userid: id,
-				nome: req.body.nome,
-				CPF: req.body.CPF,
-				vehicle: req.body.vehicle,
-				bank: req.body.bank,
+				userid: data['_id'],
+				nome: nome,
+				CPF: CPF,
+				vehicle: {},
+				bank: {},
 			});
 			driver
 				.save()
 				.then((data) => {
 					console.log(data);
-					res.send(data);
+					res.status(userData.statusCode).send(userData.result);
 				})
 				.catch((err) => {
 					console.log(err);
 				});
-		} else {
-			res.status(401).send('Não autorizado');
+		} catch (err) {
+			res.status(err.statusCode).send(err.result);
 		}
 	},
 

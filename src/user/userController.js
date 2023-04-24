@@ -104,4 +104,31 @@ module.exports = {
 			res.status(401).send('Não autorizado');
 		}
 	},
+	async newUser(user) {
+		const { nome, email, senha, roles } = user;
+
+		const existente = await User.findOne({ email: email });
+
+		if (!existente) {
+			const salt = bcrypt.genSaltSync();
+			senhaHash = bcrypt.hashSync(senha, salt);
+			const user = new User({
+				nome: nome,
+				email: email,
+				senha: senhaHash,
+				roles: roles,
+			});
+			return user
+				.save()
+				.then((data) => {
+					console.log(data);
+					return { result: data, statusCode: 201 };
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		} else {
+			throw { result: 'Usuário já cadastrado', statusCode: 409 };
+		}
+	},
 };

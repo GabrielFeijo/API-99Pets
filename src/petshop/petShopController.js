@@ -2,6 +2,7 @@ require('./Driver');
 const mongoose = require('mongoose');
 const PetShop = mongoose.model('petshop');
 const auth = require('../auth/authController');
+const userController = require('../user/userController');
 
 module.exports = {
 	async indexAll(req, res) {
@@ -22,29 +23,30 @@ module.exports = {
 		}
 	},
 	async add(req, res) {
-		let { id, token } = req.headers;
+		const { nome, CNPJ, email, senha, roles } = req.body;
 
-		const authorized = await auth.checkAccess(id, token);
+		const newUser = { nome: nome, email: email, senha: senha, roles: roles };
 
-		if (authorized) {
+		try {
+			const userData = await userController.newUser(newUser);
+			const data = userData.result;
 			const pet = new PetShop({
-				userid: id,
-				nome: req.body.nome,
-				CNPJ: req.body.CNPJ,
-				bank: req.body.bank,
-				pictureUrl: req.body.pictureUrl,
+				userid: data['_id'],
+				nome: nome,
+				CNPJ: CNPJ,
+				bank: {},
 			});
 			pet
 				.save()
 				.then((data) => {
 					console.log(data);
-					res.send(data);
+					res.status(userData.statusCode).send(userData.result);
 				})
 				.catch((err) => {
 					console.log(err);
 				});
-		} else {
-			res.status(401).send('Não autorizado');
+		} catch (err) {
+			res.status(err.statusCode).send(err.result);
 		}
 	},
 
