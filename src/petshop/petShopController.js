@@ -34,6 +34,7 @@ module.exports = {
 				userid: data['_id'],
 				nome: nome,
 				CNPJ: CNPJ,
+				pictureUrl: null,
 				bank: {},
 			});
 			pet
