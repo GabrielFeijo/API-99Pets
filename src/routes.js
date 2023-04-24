@@ -24,6 +24,14 @@ router.post('/newPet', petController.add);
 router.put('/updatePet', petController.update);
 router.delete('/deletePet', petController.deleteById);
 
+const driverController = require('./driver/driverController');
+
+router.get('/drivers', driverController.indexAll);
+router.get('/driver', driverController.indexOne);
+router.post('/newDriver', driverController.add);
+router.put('/updateDriver', driverController.update);
+router.delete('/deleteDriver', driverController.deleteById);
+
 const mailController = require('./mail/mailController');
 
 router.post('/send-code', mailController.sendCode);
