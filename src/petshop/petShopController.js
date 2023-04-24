@@ -30,9 +30,9 @@ module.exports = {
 			const pet = new PetShop({
 				userid: id,
 				nome: req.body.nome,
-				CPF: req.body.CPF,
-				vehicle: req.body.vehicle,
+				CNPJ: req.body.CNPJ,
 				bank: req.body.bank,
+				pictureUrl: req.body.pictureUrl,
 			});
 			pet
 				.save()
