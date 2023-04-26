@@ -34,6 +34,7 @@ module.exports = {
 				userid: data['_id'],
 				nome: nome,
 				CPF: CPF,
+				pictureUrl: null,
 				vehicle: {},
 				bank: {},
 			});
