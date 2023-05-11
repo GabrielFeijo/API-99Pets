@@ -35,7 +35,7 @@ module.exports = {
 					{
 						name: 'Serviço solicitado',
 						value: true,
-						updated_at: new Date(new Date() - 3600 * 1000 * 3).toISOString(),
+						updated_at: new Date(),
 					},
 					{ name: 'Pet chegou ao petshop', value: false, updated_at: null },
 					{ name: 'Pet está sendo cuidado', value: false, updated_at: null },
