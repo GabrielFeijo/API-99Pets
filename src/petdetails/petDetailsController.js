@@ -63,39 +63,13 @@ module.exports = {
             res.status(401).send('Não autorizado!');
         }
     },
-    async indexByUser(req, res) {
-        let { id, token } = req.headers;
-
-        const authorized = await auth.checkAccess(id, token);
-
-        if (authorized) {
-            PetDetails.find({ userid: id })
-
-                .then((data) => {
-                    console.log(data);
-                    res.send(data);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        } else {
-            res.status(401).send('Não autorizado!');
-        }
-    },
     async update(req, res) {
         let { id, token } = req.headers;
 
         const authorized = await auth.checkAccess(id, token);
-        let { petid, services, states } = req.body;
+        const update = req.body.update;
         if (authorized) {
-            PetDetails.findByIdAndUpdate(
-                { _id: req.query.id },
-                {
-                    petid: petid,
-                    services: services,
-                    states: states,
-                }
-            )
+            PetDetails.findByIdAndUpdate({ _id: req.query.id }, update)
                 .then((data) => {
                     console.log(data);
                     res.send(data);
