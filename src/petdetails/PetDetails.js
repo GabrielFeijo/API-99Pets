@@ -4,7 +4,7 @@ const PetDetailsSchema = new mongoose.Schema({
 	id: String,
 	petid: String,
 	services: [],
-	states: {},
+	states: [],
 });
 
 mongoose.model('petdetails', PetDetailsSchema);

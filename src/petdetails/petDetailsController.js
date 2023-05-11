@@ -25,18 +25,26 @@ module.exports = {
 		let { id, token } = req.headers;
 
 		const authorized = await auth.checkAccess(id, token);
-		let { petid, services, states } = req.body;
+		let { petid, services } = req.body;
 
 		if (authorized) {
 			const pet = new PetDetails({
 				petid: petid,
 				services: services,
-				states: {
-					requested: true,
-					arrived: false,
-					service: false,
-					finished: false,
-				},
+				states: [
+					{
+						name: 'Serviço solicitado',
+						value: true,
+						updated_at: new Date(new Date() - 3600 * 1000 * 3).toISOString(),
+					},
+					{ name: 'Pet chegou ao petshop', value: false, updated_at: null },
+					{ name: 'Pet está sendo cuidado', value: false, updated_at: null },
+					{
+						name: 'Pet está pronto para ir para casa',
+						value: false,
+						updated_at: null,
+					},
+				],
 			});
 			pet
 				.save()
