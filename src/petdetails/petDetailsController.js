@@ -31,7 +31,12 @@ module.exports = {
 			const pet = new PetDetails({
 				petid: petid,
 				services: services,
-				states: states,
+				states: {
+					requested: true,
+					arrived: false,
+					service: false,
+					finished: false,
+				},
 			});
 			pet
 				.save()
