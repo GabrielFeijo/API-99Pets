@@ -37,6 +37,7 @@ module.exports = {
 				pictureUrl: null,
 				bank: {},
 				services: [],
+				animalsInCare: [],
 			});
 			pet
 				.save()
