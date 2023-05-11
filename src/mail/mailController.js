@@ -13,7 +13,6 @@ module.exports = {
 		}
 
 		const usuario = await User.findOne({ email: req.body.email });
-
 		if (!usuario) {
 			res.status(404).send('Usuário não encontrado!');
 		} else {

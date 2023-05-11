@@ -36,6 +36,7 @@ module.exports = {
 				CNPJ: CNPJ,
 				pictureUrl: null,
 				bank: {},
+				services:{},
 			});
 			pet
 				.save()
