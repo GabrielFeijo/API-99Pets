@@ -36,7 +36,7 @@ module.exports = {
 				CNPJ: CNPJ,
 				pictureUrl: null,
 				bank: {},
-				services:{},
+				services: [],
 			});
 			pet
 				.save()
@@ -58,7 +58,7 @@ module.exports = {
 		const authorized = await auth.checkAccess(id, token);
 
 		if (authorized) {
-			PetShop.findOne({ userid: req.query.id })
+			PetShop.findOne({ userid: id })
 				.then((data) => {
 					console.log(data);
 					res.send(data);
