@@ -26,12 +26,11 @@ router.delete('/deletePet', petController.deleteById);
 
 const petDetailsController = require('./petdetails/petDetailsController');
 
-router.get('/pets', petDetailsController.indexAll);
-router.get('/onePet', petDetailsController.indexOne);
-router.get('/myPets', petDetailsController.indexByUser);
-router.post('/newPet', petDetailsController.add);
-router.put('/updatePet', petDetailsController.update);
-router.delete('/deletePet', petDetailsController.deleteById);
+router.get('/pets/details', petDetailsController.indexAll);
+router.get('/pet/details', petDetailsController.indexOne);
+router.post('/pet/details', petDetailsController.add);
+router.put('/pet/details', petDetailsController.update);
+router.delete('/pet/details', petDetailsController.deleteById);
 
 const driverController = require('./driver/driverController');
 
