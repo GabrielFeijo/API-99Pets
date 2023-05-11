@@ -6,6 +6,7 @@ const PetShopSchema = new mongoose.Schema({
 	CNPJ: String,
 	pictureUrl: String,
 	bank: {},
+	services:{},
 });
 
 mongoose.model('petshop', PetShopSchema);
