@@ -48,6 +48,14 @@ router.post('/newShop', petShopController.add);
 router.put('/updateShop', petShopController.update);
 router.delete('/deleteShop', petShopController.deleteById);
 
+const productsController = require('./products/productsController');
+
+router.get('/products', productsController.indexAll);
+router.get('/products/:category', productsController.indexByCategory);
+router.post('/products', productsController.add);
+router.put('/products/:id', productsController.update);
+router.delete('/products/:id', productsController.deleteById);
+
 const mailController = require('./mail/mailController');
 
 router.post('/send-code', mailController.sendCode);

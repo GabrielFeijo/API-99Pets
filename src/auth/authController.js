@@ -14,23 +14,28 @@ module.exports = {
 		try {
 			let user = await User.findOne({ email: email });
 
-			if (user && bcrypt.compareSync(senha, user.senha)) {
-				user.token = uuid.v4();
+			if (user) {
+				if (bcrypt.compareSync(senha, user.senha)) {
+					user.token = uuid.v4();
 
-				user = await user.save();
+					user = await user.save();
 
-				result = {
-					id: user._id,
-					token: user.token,
-					roles: user.roles,
-					nome: user.nome,
-				};
+					result = {
+						id: user._id,
+						token: user.token,
+						roles: user.roles,
+						nome: user.nome,
+					};
 
-				messages.push('Usuário autorizado.');
-				statusCode = 200;
+					messages.push('Usuário autorizado.');
+					statusCode = 200;
+				} else {
+					messages.push('Email ou senha inválidos!');
+					statusCode = 401;
+				}
 			} else {
-				messages.push('Não autorizado.');
-				statusCode = 401;
+				messages.push('Usuário não encontrado!');
+				statusCode = 404;
 			}
 
 			return res.status(statusCode).json({ result, messages });
