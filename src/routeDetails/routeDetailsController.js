@@ -1,6 +1,6 @@
 require('./RouteDetails');
 const mongoose = require('mongoose');
-const RouteDetails = mongoose.model('RouteDetails');
+const RouteDetails = mongoose.model('routeDetails');
 const auth = require('../auth/authController');
 
 module.exports = {
