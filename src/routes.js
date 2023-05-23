@@ -32,6 +32,14 @@ router.post('/pet/details', petDetailsController.add);
 router.put('/pet/details', petDetailsController.update);
 router.delete('/pet/details', petDetailsController.deleteById);
 
+const commentsController = require('./comments/commentsController');
+
+router.get('/comments', commentsController.indexAll);
+router.get('/comment/:id', commentsController.indexOne);
+router.post('/newComment', commentsController.add);
+router.put('/updateComment/:id', commentsController.update);
+router.delete('/deleteComment/:id', commentsController.deleteById);
+
 const driverController = require('./driver/driverController');
 
 router.get('/drivers', driverController.indexAll);
