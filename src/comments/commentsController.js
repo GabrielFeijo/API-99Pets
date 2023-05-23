@@ -22,7 +22,7 @@ module.exports = {
         }
     },
     async add(req, res) {
-        const { name, rating, comment, userid } = req.body;
+        const { userid, name, rating, comment } = req.body;
 
         try {
             const Comments = new Comments({
