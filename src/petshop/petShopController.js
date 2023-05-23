@@ -38,6 +38,7 @@ module.exports = {
 				bank: {},
 				services: [],
 				animalsInCare: [],
+				serviceHistory: [],
 			});
 			pet
 				.save()
