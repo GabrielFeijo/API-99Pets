@@ -60,7 +60,7 @@ module.exports = {
 		const authorized = await auth.checkAccess(id, token);
 
 		if (authorized) {
-			Driver.findOne({ userid: req.query.id })
+			Driver.findOne({ userid: req.params.id })
 				.then((data) => {
 					console.log(data);
 					res.send(data);

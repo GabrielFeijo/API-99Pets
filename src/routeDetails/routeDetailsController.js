@@ -56,7 +56,7 @@ module.exports = {
 		const authorized = await auth.checkAccess(id, token);
 
 		if (authorized) {
-			RouteDetails.findOne({ _id: req.query.id })
+			RouteDetails.findOne({ _id: req.params.id })
 				.then((data) => {
 					console.log(data);
 					res.send(data);
@@ -74,7 +74,7 @@ module.exports = {
 		const authorized = await auth.checkAccess(id, token);
 		const update = req.body.update;
 		if (authorized) {
-			RouteDetails.findByIdAndUpdate({ _id: req.query.id }, update)
+			RouteDetails.findByIdAndUpdate({ _id: req.params.id }, update)
 				.then((data) => {
 					console.log(data);
 					res.send(data);
@@ -92,7 +92,7 @@ module.exports = {
 		const authorized = await auth.checkAccess(id, token);
 
 		if (authorized) {
-			RouteDetails.findByIdAndRemove(req.query.id)
+			RouteDetails.findByIdAndRemove(req.params.id)
 				.then((data) => {
 					console.log(data);
 					res.send(data);
