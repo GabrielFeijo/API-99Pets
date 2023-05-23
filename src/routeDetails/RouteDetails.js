@@ -7,7 +7,7 @@ const RouteDetailsSchema = new mongoose.Schema({
 	time_spent: Number,
 	kilometers_driven: Number,
 	route_price: Number,
-	finished: Boolean,
+	created_at: Date,
 });
 
 mongoose.model('routeDetails', RouteDetailsSchema);

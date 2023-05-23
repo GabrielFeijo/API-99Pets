@@ -35,7 +35,7 @@ module.exports = {
 				time_spent: time_spent,
 				kilometers_driven: kilometers_driven,
 				route_price: route_price,
-				finished: finished,
+				created_at: new Date(),
 			});
 			route
 				.save()
