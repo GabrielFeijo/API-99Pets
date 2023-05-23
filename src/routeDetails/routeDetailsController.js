@@ -1,7 +1,6 @@
-require('./Driver');
+require('./RouteDetails');
 const mongoose = require('mongoose');
-const Driver = mongoose.model('driver');
-const user = require('../user/userController');
+const RouteDetails = mongoose.model('RouteDetails');
 const auth = require('../auth/authController');
 
 module.exports = {
@@ -11,7 +10,7 @@ module.exports = {
 		const authorized = await auth.checkAccess(id, token);
 
 		if (authorized) {
-			Driver.find({})
+			RouteDetails.find({})
 				.then((data) => {
 					res.send(data);
 				})
@@ -23,44 +22,41 @@ module.exports = {
 		}
 	},
 	async add(req, res) {
-		const { nome, CPF, email, senha, roles } = req.body;
+		let { id, token } = req.headers;
 
-		const newUser = { nome: nome, email: email, senha: senha, roles: roles };
+		const authorized = await auth.checkAccess(id, token);
+		let { from, to, time_spent, kilometers_driven, route_price, finished } =
+			req.body;
 
-		try {
-			const userData = await user.newUser(newUser);
-			const data = userData.result;
-			const driver = new Driver({
-				userid: data['_id'],
-				nome: nome,
-				CPF: CPF,
-				pictureUrl: null,
-				wallet_value: 0,
-				vehicle: {},
-				bank: {},
-				routes: [],
+		if (authorized) {
+			const route = new RouteDetails({
+				from: from,
+				to: to,
+				time_spent: time_spent,
+				kilometers_driven: kilometers_driven,
+				route_price: route_price,
+				finished: finished,
 			});
-			driver
+			route
 				.save()
 				.then((data) => {
 					console.log(data);
-					res.status(userData.statusCode).send(userData.result);
+					res.send(data);
 				})
 				.catch((err) => {
 					console.log(err);
 				});
-		} catch (err) {
-			res.status(err.statusCode).send(err.result);
+		} else {
+			res.status(401).send('Não autorizado');
 		}
 	},
-
 	async indexOne(req, res) {
 		let { id, token } = req.headers;
 
 		const authorized = await auth.checkAccess(id, token);
 
 		if (authorized) {
-			Driver.findOne({ userid: req.query.id })
+			RouteDetails.findOne({ _id: req.query.id })
 				.then((data) => {
 					console.log(data);
 					res.send(data);
@@ -78,7 +74,7 @@ module.exports = {
 		const authorized = await auth.checkAccess(id, token);
 		const update = req.body.update;
 		if (authorized) {
-			Driver.findOneAndUpdate({ userid: id }, update)
+			RouteDetails.findByIdAndUpdate({ _id: req.query.id }, update)
 				.then((data) => {
 					console.log(data);
 					res.send(data);
@@ -96,7 +92,7 @@ module.exports = {
 		const authorized = await auth.checkAccess(id, token);
 
 		if (authorized) {
-			Driver.findOneAndDelete({ userid: id })
+			RouteDetails.findByIdAndRemove(req.query.id)
 				.then((data) => {
 					console.log(data);
 					res.send(data);
