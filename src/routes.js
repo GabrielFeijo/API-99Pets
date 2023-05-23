@@ -44,7 +44,7 @@ const routeDetailsController = require('./routeDetails/routeDetailsController');
 
 router.get('/routes', routeDetailsController.indexAll);
 router.get('/routes/:id', routeDetailsController.indexOne);
-router.post('routes', routeDetailsController.add);
+router.post('/routes', routeDetailsController.add);
 router.put('/routes/:id', routeDetailsController.update);
 router.delete('/routes/:id', routeDetailsController.deleteById);
 
