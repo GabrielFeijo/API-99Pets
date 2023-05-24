@@ -35,6 +35,7 @@ router.delete('/pet/details', petDetailsController.deleteById);
 const commentsController = require('./comments/commentsController');
 
 router.get('/comments', commentsController.indexAll);
+router.get('/comments/:id', commentsController.indexByUser);
 router.get('/comment/:id', commentsController.indexOne);
 router.post('/newComment', commentsController.add);
 router.put('/updateComment/:id', commentsController.update);
