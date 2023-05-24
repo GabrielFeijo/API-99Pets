@@ -79,4 +79,8 @@ const mailController = require('./mail/mailController');
 router.post('/send-code', mailController.sendCode);
 router.post('/verify-code', mailController.verifyCode);
 
+const imageController = require('./image/imageController');
+
+router.get('/check', imageController.checkImage);
+
 module.exports = router;
