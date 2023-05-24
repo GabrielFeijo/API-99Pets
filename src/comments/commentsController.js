@@ -28,13 +28,14 @@ module.exports = {
 		const { userid, name, rating, comment } = req.body;
 
 		if (authorized) {
-			const Comments = new Comments({
+			const comments = new Comments({
 				userid: userid,
 				name: name,
 				rating: rating,
 				comment: comment,
 			});
-			Comments.save()
+			comments
+				.save()
 				.then((data) => {
 					console.log(data);
 					res.send(data);
