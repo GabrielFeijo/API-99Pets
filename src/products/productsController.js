@@ -47,6 +47,7 @@ module.exports = {
 
 		if (authorized) {
 			const product = new Products({
+				userid: id,
 				image: image,
 				name: name,
 				weight: weight,
