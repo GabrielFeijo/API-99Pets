@@ -21,6 +21,23 @@ module.exports = {
 			res.status(401).send('Não autorizado.');
 		}
 	},
+	async indexByUser(req, res) {
+		let { id, token } = req.headers;
+
+		const authorized = await auth.checkAccess(id, token);
+
+		if (authorized) {
+			Products.find({ userid: id })
+				.then((data) => {
+					res.send(data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		} else {
+			res.status(401).send('Não autorizado.');
+		}
+	},
 	async indexByCategory(req, res) {
 		let { id, token } = req.headers;
 

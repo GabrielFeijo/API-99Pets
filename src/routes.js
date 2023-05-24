@@ -69,6 +69,7 @@ const productsController = require('./products/productsController');
 
 router.get('/products', productsController.indexAll);
 router.get('/products/:category', productsController.indexByCategory);
+router.get('/shopProducts', commentsController.indexByUser);
 router.post('/products', productsController.add);
 router.put('/products/:id', productsController.update);
 router.delete('/products/:id', productsController.deleteById);
