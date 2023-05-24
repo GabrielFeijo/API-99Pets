@@ -81,6 +81,6 @@ router.post('/verify-code', mailController.verifyCode);
 
 const imageController = require('./image/imageController');
 
-router.get('/check', imageController.checkImage);
+router.post('/check', imageController.checkImage);
 
 module.exports = router;
