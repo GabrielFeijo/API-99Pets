@@ -22,9 +22,12 @@ module.exports = {
 		}
 	},
 	async add(req, res) {
+		let { id, token } = req.headers;
+
+		const authorized = await auth.checkAccess(id, token);
 		const { userid, name, rating, comment } = req.body;
 
-		try {
+		if (authorized) {
 			const Comments = new Comments({
 				userid: userid,
 				name: name,
@@ -34,13 +37,13 @@ module.exports = {
 			Comments.save()
 				.then((data) => {
 					console.log(data);
-					res.status(commentData.statusCode).send(commentData.result);
+					res.send(data);
 				})
 				.catch((err) => {
 					console.log(err);
 				});
-		} catch (err) {
-			res.status(err.statusCode).send(err.result);
+		} else {
+			res.status(401).send('Não autorizado!');
 		}
 	},
 
