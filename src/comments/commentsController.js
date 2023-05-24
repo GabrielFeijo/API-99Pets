@@ -27,7 +27,7 @@ module.exports = {
 		const authorized = await auth.checkAccess(id, token);
 
 		if (authorized) {
-			Comments.find({ userid: req.params.id })
+			Comments.find({ userid: id })
 				.then((data) => {
 					res.send(data);
 				})
