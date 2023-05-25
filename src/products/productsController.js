@@ -60,7 +60,7 @@ module.exports = {
 
 		const authorized = await auth.checkAccess(id, token);
 
-		const { image, name, weight, price, category } = req.body;
+		const { image, name, weight, price, category, description } = req.body;
 
 		if (authorized) {
 			const product = new Products({
@@ -70,6 +70,7 @@ module.exports = {
 				weight: weight,
 				price: price,
 				category: category,
+				description: description,
 			});
 			product
 				.save()
