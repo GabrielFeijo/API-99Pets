@@ -6,6 +6,7 @@ const PetShopSchema = new mongoose.Schema({
 	CNPJ: String,
 	pictureUrl: String,
 	wallet_value: Number,
+	rating: Number,
 	bank: {},
 	services: [],
 	animalsInCare: [],
