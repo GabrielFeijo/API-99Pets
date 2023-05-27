@@ -35,6 +35,7 @@ module.exports = {
 				nome: nome,
 				CNPJ: CNPJ,
 				pictureUrl: null,
+				description: null,
 				wallet_value: 0,
 				rating: 5,
 				bank: {},

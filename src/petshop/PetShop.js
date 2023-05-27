@@ -4,6 +4,7 @@ const PetShopSchema = new mongoose.Schema({
 	userid: String,
 	nome: String,
 	CNPJ: String,
+	description: String,
 	pictureUrl: String,
 	wallet_value: Number,
 	rating: Number,
