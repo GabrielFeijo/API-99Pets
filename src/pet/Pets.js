@@ -5,6 +5,7 @@ const EmpoyeeSchema = new mongoose.Schema({
 	nome: String,
 	idade: String,
 	raca: String,
+	tipo: String,
 	picture: String,
 });
 

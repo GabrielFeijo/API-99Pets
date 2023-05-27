@@ -32,6 +32,7 @@ module.exports = {
 				nome: req.body.nome,
 				idade: req.body.idade,
 				raca: req.body.raca,
+				tipo: req.body.tipo,
 				picture: req.body.picture,
 			});
 			pet
