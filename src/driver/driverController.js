@@ -36,6 +36,7 @@ module.exports = {
 				CPF: CPF,
 				pictureUrl: null,
 				wallet_value: 0,
+				rating: 5,
 				vehicle: {},
 				bank: {},
 				routes: [],

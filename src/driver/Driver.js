@@ -6,6 +6,7 @@ const DriverSchema = new mongoose.Schema({
 	CPF: String,
 	pictureUrl: String,
 	wallet_value: Number,
+	rating: Number,
 	vehicle: {},
 	bank: {},
 	routes: [],
